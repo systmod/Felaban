@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>LigaPro FAN ID Verificación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 10px 0px 0px 0px;
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        hr {
+            height: 1px;
+            background-color: #e7e6e6;
+            border: none;
+            margin: 0px;
+        }
+
+        .header,
+        #titulo {
+            color: #34358b;
+        }
+
+        .logo {
+            max-width: 40%;
+        }
+
+        .logoBina {
+            max-width: 20%;
+        }
+
+        .button {
+            width: 30%;
+            background-color: #34358b;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        #subtitulo {
+            color: gray;
+            font-size: 1.4rem;
+        }
+
+        #sub {
+            color: #34358b;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 id="titulo">FAN ID LIGAPRO</h1>
+        </div>
+        <hr>
+        <table width="100%" cellpadding="10" cellspacing="0" style="background: #80808017;">
+            <tr>
+                <td align="center">
+                    <img class="logo"
+                        src="https://tendagoeast.blob.core.windows.net/binasystem/Resource/logoLigaPro.png"
+                        alt="LigaPro Logo">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <span id="sub"><strong>¡Gracias por suscribirte!</strong></span>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <span id="subtitulo">Verifica tu correo electrónico</span>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <br>
+        <table width="100%" cellpadding="10" cellspacing="0">
+            <tr>
+                <td align="center" style="text-align: center;">
+                    <p id="texto_parrafo1">Es un placer que formes parte de nuestra comunidad de<br>
+                        <strong>FANÁTICOS</strong>, estamos felices
+                        de contar contigo para mejorar<br>la seguridad en los estadios.
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="text-align: center;">
+                    <p>Para verificar tu correo por favor dar clic en el botón:</p>
+                    <br>
+                    <a href="https://api.binasystem.com/auth/v1/register/{ID}/verify" class="button"
+                        style="color: white;">VERIFICAR</a>
+                    <p></p>
+                    <span>Gracias,</span>
+                    <p><strong>Equipo de Liga Pro</strong></p>
+                    <br>
+                </td>
+            </tr>
+
+        </table>
+        <div style="background: #6e6e6e;
+        padding: 1%;
+        text-align: center;">
+            <img class="logoBina" src="https://tendagoeast.blob.core.windows.net/binasystem/Resource/powerBy.png"
+                alt="Logo">
+
+        </div>
+    </div>
+</body>
+
+</html>

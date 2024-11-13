@@ -1,0 +1,165 @@
+﻿{
+   "CodeGenerationMode": 3,
+   "ContextClassName": "AuthContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": "Repositories",
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "DataAccess",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[Aplicacion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AuditLogs]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DetallePerfil]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Empresa]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Licencia]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Modulo]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Opcion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Perfil]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Producto]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ProductoEmpresa]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Sesion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoPerfil]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TipoUnidadAdmin]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UnidadAdmin]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UserMailVerify]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Usuario]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UsuarioUnidad]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ActualizarCorreo]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ActualizarPassword]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[AgregarEmpresa]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[AgregarUnidadAdmin]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[AgregarUsuario]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Custom_AdminUnitsByCompany]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[IniciarSesion]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[IniciarSesionOtp]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[LogAudit]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[LogSesion]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ObtenerPermisos]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ObtenerUsuarios]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ValidateUsername]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[VerifyUserEmailV2]",
+         "ObjectType": 1
+      }
+   ],
+   "UiHint": "binasystem.AUTH.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": true,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": true,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Domain\Common.Domain.csproj" />
+    <ProjectReference Include="..\Common.Operations\Common.Operations.csproj" />
+    <ProjectReference Include="..\Common.Storage\Common.Storage.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\DataAccess\ConcentratorFraud.Felaban.Auth.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
