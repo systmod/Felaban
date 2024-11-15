@@ -507,43 +507,6 @@ namespace BusinessLogic.Services
             return detalles;
         }
 
-        public async Task<IOperationResult<List<RolesDto>>> GetRoles(IOperationRequest model)
-        {  
-            var roles = _db.Perfil.Include(x=>x.IdTipoPerfilNavigation)
-                                  .Where(x => x.IdProducto == model.Aplicacion.Producto.IdProducto)
-                                  .Select(x => _mapper.Map<RolesDto>(x))
-                                  .ToList();
-
-            return await roles.ToResultAsync();
-        }
-
-        public async Task<IOperationResult<List<RolesDto>>> GetRolesByAplicacion(IOperationRequest model, int idAplicacion)
-        {
-            var roles = _db.Perfil.Include(x => x.IdTipoPerfilNavigation)
-                                  .Where(x => x.IdAplicacion == idAplicacion)
-                                  .Select(x => _mapper.Map<RolesDto>(x))
-                                  .ToList();
-
-            return await roles.ToResultAsync();
-        }
-
-        public async Task<IOperationResult<List<ProfileDetailDto>>>GetDetailsByIdPerfil(string idPerfil)
-        {
-            try
-            {    
-                Guid.TryParse(idPerfil, out var id);
-                var detalles = _db.DetallePerfil.Search(x => x.IdEstado && x.IdPerfil == id).Include(X => X.IdOpcionNavigation);
-
-                return await _mapper.Map<List<ProfileDetailDto>>(detalles)
-                                    .ToResultAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "ERROR: Obtener Usuario por Id");
-                return new OperationResult<List<ProfileDetailDto>>(HttpStatusCode.BadRequest, "No se encontro el usuario!", error: $"{ex}");
-            }
-        }
-
         public async Task<IOperationResultList<UnidadAdminDto>> GetAdminUnitsByCompany(IOperationRequest model, string term, int page = 1, int pageSize = 10)
         {
             var units = _db.UnidadAdmin.Include(x => x.IdEmpresaNavigation)
@@ -710,56 +673,6 @@ namespace BusinessLogic.Services
 
             return new OperationResult(HttpStatusCode.OK, "Ya existe este nombre de usuario");
         }
-
-
-        public async Task<IOperationResultList<ProfileDetailDto>> AssignOptions(string idPerfil, IOperationRequest<List<ProfileDetailRequest>> request)
-        {
-            try
-            {
-                var perfil = _db.Perfil.FirstOrDefault(x => x.IdPerfil.ToString() == idPerfil && x.IdEstado == 1);
-                
-                if (perfil == null)
-                {
-                    return new OperationResultList<ProfileDetailDto>(HttpStatusCode.NotFound, "El perfil no existe!");
-                }
-
-                foreach (var item in request.Data)
-                {
-                    var detalle = _mapper.Map<DetallePerfil>(item); 
-
-                    detalle.IdPerfil = Guid.Parse(idPerfil);
-                    perfil.DetallePerfil.Add(detalle);
-                }
-
-                await _detallePerfil.InsertAllAsync(perfil.DetallePerfil);
-                await _detallePerfil.SaveAsync(request);
-
-                var result = _mapper.Map<List<ProfileDetailDto>>(perfil.DetallePerfil);
-
-                return await result.ToResultListAsync();
-            }
-            catch (Exception ex)
-            {
-                return await ex.ToResultListAsync<ProfileDetailDto>();
-            }
-        }
-
-        public async Task<IOperationResult> DeleteDetail(long id, IOperationRequest request)
-        {
-            var detail =  _db.DetallePerfil.FirstOrDefault(x => x.IdEstado && x.IdDetallePerfil == id);
-
-            if (detail != null)
-            {
-                await _detallePerfil.DeleteAsync(detail);
-                await _db.SaveAsync(request);
-
-                return new OperationResult(HttpStatusCode.OK);
-            }
-
-            return new OperationResult(HttpStatusCode.NotFound, "No se encontró el detalle especificado!");
-        }
-
-
 
         #region Empresa
 

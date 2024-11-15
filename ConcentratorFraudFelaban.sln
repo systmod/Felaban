@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Storage", "Common.St
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{737B10C1-79FB-4B81-A752-8C69D28E4A69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConcentratorFraud.Felaban.Auth.Domain", "ConcentratorFraud.Felaban.Auth.Domain\ConcentratorFraud.Felaban.Auth.Domain.csproj", "{7F749CBA-C55B-4B00-A7BE-E7AE8E28A5B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{6B17A27A-9459-45E9-8BC6-60FF6D35BC5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B17A27A-9459-45E9-8BC6-60FF6D35BC5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B17A27A-9459-45E9-8BC6-60FF6D35BC5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F749CBA-C55B-4B00-A7BE-E7AE8E28A5B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F749CBA-C55B-4B00-A7BE-E7AE8E28A5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F749CBA-C55B-4B00-A7BE-E7AE8E28A5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F749CBA-C55B-4B00-A7BE-E7AE8E28A5B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,6 +97,7 @@ Global
 		{3EBF9163-A4CC-418B-A3D2-50C1F348F282} = {FB6B45E3-247B-4512-B5FD-EEE903E06282}
 		{6B17A27A-9459-45E9-8BC6-60FF6D35BC5D} = {FB6B45E3-247B-4512-B5FD-EEE903E06282}
 		{737B10C1-79FB-4B81-A752-8C69D28E4A69} = {FC5A41B4-8F84-46FD-8629-653C40410A3C}
+		{7F749CBA-C55B-4B00-A7BE-E7AE8E28A5B3} = {737B10C1-79FB-4B81-A752-8C69D28E4A69}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AB6E78EA-C77A-488B-A6AD-E004682A272A}

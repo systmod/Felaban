@@ -120,7 +120,7 @@ namespace DataAccess.Repositories
 
         public async Task<T> DeleteAsync(T entity)
         {
-            context.Entry(entity).SetProperty("IdEstado", false);
+            context.Entry(entity).SetProperty("IdEstado", 0);
             return await UpdateAsync(entity);
         }
 
@@ -174,7 +174,7 @@ namespace DataAccess.Repositories
                         .SetProperty("FechaIngreso", DateTime.Now)
                         .SetProperty("IpIngreso", ip ?? "0.0.0.0")
                         .SetProperty("IdEmpresa", idEmpresa)
-                        .SetProperty("IdEstado", true);
+                        .SetProperty("IdEstado", 1);
                 }
 
             }

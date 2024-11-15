@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using ConcentratorFraud.Felaban.Auth.Domain.Request;
 
 namespace API.Controllers
 {
@@ -15,10 +16,10 @@ namespace API.Controllers
     [ApiController]    
     public class RolesController : ApiControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IRolesService _userService;
 
         public RolesController(
-            IUserService userService
+            IRolesService userService
             )
         {
             _userService = userService;
@@ -31,6 +32,72 @@ namespace API.Controllers
         public async Task<IActionResult> GetRoles()
         {
             var result = await _userService.GetRoles(this.ToRequest(this));
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return NotFound(result);
+        }
+
+        [HttpPost, Route("crear")]
+        [TokenAuthorize]
+        [ProducesResponseType(typeof(IOperationResult<PerfilDto>), 201)]
+        [ProducesResponseType(typeof(IOperationResult), 500)]
+        public async Task<IActionResult> GuardarPerfil([FromBody] PerfilRequest request)
+        {
+            try
+            {
+                var result = await _userService.PostPerfil(request.ToRequest(this));
+
+                if (result.Success)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return result.ToObjectResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.ToObjectResult();
+            }
+        }
+
+        [HttpPut, Route("modificar/{id}")]
+        [TokenAuthorize]
+        [ProducesResponseType(typeof(IOperationResult<PerfilDto>), 201)]
+        [ProducesResponseType(typeof(IOperationResult), 500)]
+        public async Task<IActionResult> ModificarPerfil([FromBody] PerfilRequest request, Guid id)
+        {
+            try
+            {
+                var result = await _userService.PutPerfil(request.ToRequest(this), id);
+
+                if (result.Success)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return result.ToObjectResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.ToObjectResult();
+            }
+        }
+
+        [HttpDelete("borrar/{id}")]
+        [TokenAuthorize()]
+        [ProducesResponseType(typeof(AuthenticationResponse), 200)]
+        [ProducesResponseType(typeof(IOperationResult), 500)]
+        public async Task<IActionResult> DeleteDetail(Guid id)
+        {
+            var result = await _userService.DeletePerfil(this, id);
 
             if (result.Success)
             {

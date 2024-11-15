@@ -9,6 +9,7 @@
     <ProjectReference Include="..\Common.Operations\Common.Operations.csproj" />
     <ProjectReference Include="..\Common.Storage\Common.Storage.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\ConcentratorFraud.Felaban.Auth.Domain\ConcentratorFraud.Felaban.Auth.Domain.csproj" />
     <ProjectReference Include="..\DataAccess\ConcentratorFraud.Felaban.Auth.DataAccess.csproj" />
   </ItemGroup>
 

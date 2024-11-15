@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Common;
 using Common.Domain.Models;
+using ConcentratorFraud.Felaban.Auth.Domain.Request;
 using DataAccess.Models;
 
 namespace BusinessLogic.Mapping
@@ -16,7 +17,10 @@ namespace BusinessLogic.Mapping
             CreateMap<UnidadAdmin, UnidadAdminDto>()
                 .ForMember(member => member.TipoUnidad, opts => opts.MapFrom(x => x.IdTipoUnidadAdminNavigation.Descripcion))
                 .ReverseMap();
+            
             CreateMap<Perfil, PerfilDto>().ReverseMap();
+            CreateMap<Perfil, PerfilRequest>().ReverseMap();
+
             CreateMap<Modulo, ModuloDto>().ReverseMap();
             CreateMap<Opcion, OpcionDto>().ReverseMap();
 

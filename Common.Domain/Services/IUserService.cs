@@ -34,12 +34,7 @@ namespace Common.Domain.Services
         Task<IOperationResult<List<UnidadAdminDto>>> GetAdminUnitsByUser(IOperationRequest<string> model);
         
         Task<IOperationResultList<UnidadAdminDto>> GetAdminUnitsByCompany(IOperationRequest model, string term, int page = 1, int pageSize = 10);
-
-        Task<IOperationResult<List<RolesDto>>> GetRoles(IOperationRequest model);
-        Task<IOperationResult<List<RolesDto>>> GetRolesByAplicacion(IOperationRequest model, int idAplicacion);
-
-        Task<IOperationResult<List<ProfileDetailDto>>> GetDetailsByIdPerfil(string idPerfil);
-
+        
         Task<IOperationResult<UsuarioUnidadDto>> AssignAdminUnit(IOperationRequest<AssignUnitRequest> operationRequest);
 
         Task<IOperationResult<List<UnidadAdminDto>>> GetAdminUnitsByIdUser(IOperationRequest<string> idUser, string? term = default);
@@ -48,9 +43,6 @@ namespace Common.Domain.Services
 
         Task<IOperationResultList<UsuarioDto>> GetAllUsers(IOperationRequest<FindUsersRequest> model, int page = 1, int? pageSize = 10);
         IOperationResult ValidateUsername(string username);
-
-        Task<IOperationResultList<ProfileDetailDto>> AssignOptions(string idPerfil, IOperationRequest<List<ProfileDetailRequest>> request);
-        Task<IOperationResult> DeleteDetail(long id, IOperationRequest request);
 
         IOperationResult CheckMail(string correo, int idAplicacion);
         Task<IOperationResult<string>> GetPlantillaByAplicacion(int idAplicacion);

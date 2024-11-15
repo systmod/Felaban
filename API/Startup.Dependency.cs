@@ -4,6 +4,7 @@ using BusinessLogic.Services;
 using Common;
 using Common.Domain.Services;
 using Common.Storage.Handlers;
+using ConcentratorFraud.Felaban.Auth.BusinessLogic.Services;
 using DataAccess.Repositories;
 using DinkToPdf;
 using DinkToPdf.Contracts;
@@ -29,7 +30,8 @@ namespace API
             services.AddScoped<IPermissionsService, PermissionsService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IApplicationService, ApplicationService>();
-            services.AddScoped<ICompanyService, CompanyService>();           
+            services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IRolesService, RolesService>();
 
             services.AddSingleton<Common.ITools, Tools>();
 
