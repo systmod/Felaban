@@ -3,19 +3,16 @@ using Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Repositories;
 using AutoMapper;
-using BusinessLogic.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Common.Storage.Handlers;
 using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
-using Common.Domain.Services;
 using System.Net;
 using ConcentratorFraud.Felaban.Auth.Domain.Request;
+using ConcentratorFraud.Felaban.Auth.Domain.Services;
 
 
 namespace ConcentratorFraud.Felaban.Auth.BusinessLogic.Services

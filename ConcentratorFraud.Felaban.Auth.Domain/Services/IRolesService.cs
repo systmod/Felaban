@@ -1,4 +1,5 @@
 ﻿using Common.Domain.Models;
+using Common;
 using ConcentratorFraud.Felaban.Auth.Domain.Request;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Domain.Services
+namespace ConcentratorFraud.Felaban.Auth.Domain.Services
 {
     public interface IRolesService
     {

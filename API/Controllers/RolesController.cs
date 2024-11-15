@@ -1,14 +1,12 @@
 ﻿using Common.Domain.Models;
 using Common;
-using Common.Domain.Services;
 using Common.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using ConcentratorFraud.Felaban.Auth.Domain.Request;
+using ConcentratorFraud.Felaban.Auth.Domain.Services;
 
 namespace API.Controllers
 {

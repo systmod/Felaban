@@ -22,6 +22,8 @@ namespace BusinessLogic.Mapping
             CreateMap<Perfil, PerfilRequest>().ReverseMap();
 
             CreateMap<Modulo, ModuloDto>().ReverseMap();
+            CreateMap<Modulo, ModuloRequest>().ReverseMap();
+
             CreateMap<Opcion, OpcionDto>().ReverseMap();
 
             CreateMap<Empresa, EmpresaDto>().ReverseMap();
@@ -66,9 +68,6 @@ namespace BusinessLogic.Mapping
 
 
             CreateMap<TipoPerfil, TipoPerfilDto>().ReverseMap();
-            CreateMap<Modulo, ModuloDto>()
-                .ReverseMap();
-
 
             CreateMap<ProfileDetailRequest, DetallePerfil>();
             CreateMap<DetallePerfil, ProfileDetailDto>()
