@@ -25,6 +25,7 @@ namespace BusinessLogic.Mapping
             CreateMap<Modulo, ModuloRequest>().ReverseMap();
 
             CreateMap<Opcion, OpcionDto>().ReverseMap();
+            CreateMap<Opcion, OpcionRequest>().ReverseMap();
 
             CreateMap<Empresa, EmpresaDto>().ReverseMap();
             CreateMap<Empresa, EmpresaRequest>().ReverseMap();

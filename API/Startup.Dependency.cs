@@ -34,6 +34,7 @@ namespace API
             services.AddScoped<ICompanyService, CompanyService>();
             services.AddScoped<IRolesService, RolesService>();
             services.AddScoped<IModuloService, ModuloService>();
+            services.AddScoped<IOptionService, OptionService>();
 
             services.AddSingleton<Common.ITools, Tools>();
 

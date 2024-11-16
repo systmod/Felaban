@@ -158,7 +158,7 @@ namespace ConcentratorFraud.Felaban.Auth.BusinessLogic.Services
                 rol = _mapper.Map(request.Data, rol);
 
                 await Task.WhenAll(
-                    _perfil.InsertAsync(rol),
+                    _perfil.UpdateAsync(rol),
                     _perfil.SaveAsync(request)
                     );
 

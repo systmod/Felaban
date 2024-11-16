@@ -2,6 +2,7 @@
 using Common.Domain.Models;
 using Common.Domain.Services;
 using Common.Http;
+using ConcentratorFraud.Felaban.Auth.Domain.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -128,6 +129,47 @@ namespace API.Controllers
             {
                 return await Task.FromResult(ex.ToObjectResult());
             }
+        }
+
+        [HttpPut, Route("modificar/{id}")]
+        [TokenAuthorize]
+        [ProducesResponseType(typeof(IOperationResult<UsuarioDto>), 201)]
+        [ProducesResponseType(typeof(IOperationResult), 500)]
+        public async Task<IActionResult> PutUser([FromBody] UsuarioRequest request, string id)
+        {
+            try
+            {
+                var result = await _userService.PutUser(request.ToRequest(this), id);
+
+                if (result.Success)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return result.ToObjectResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.ToObjectResult();
+            }
+        }
+
+        [HttpDelete("borrar/{id}")]
+        [TokenAuthorize()]
+        [ProducesResponseType(typeof(AuthenticationResponse), 200)]
+        [ProducesResponseType(typeof(IOperationResult), 500)]
+        public async Task<IActionResult> DeleteUsuario(string id)
+        {
+            var result = await _userService.DeleteUsuario(this, id);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return NotFound(result);
         }
 
     }

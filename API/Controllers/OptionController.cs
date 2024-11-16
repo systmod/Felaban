@@ -7,29 +7,30 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
+using DataAccess.Models;
 
 namespace ConcentratorFraud.Felaban.Auth.API.Controllers
 {
-    [Route("module")]
+    [Route("option")]
     [ApiController]
-    public class ModuloController : ApiControllerBase
+    public class OptionController : ApiControllerBase
     {
-        private readonly IModuloService _userService;
+        private readonly IOptionService _userService;
 
-        public ModuloController(
-            IModuloService userService
+        public OptionController(
+            IOptionService userService
             )
         {
             _userService = userService;
         }
 
-        [HttpGet("")]
+        [HttpGet("{idModulo}")]
         [TokenAuthorize()]
-        [ProducesResponseType(typeof(IOperationResult<ModuloDto>), 200)]
+        [ProducesResponseType(typeof(IOperationResult<OpcionDto>), 200)]
         [ProducesResponseType(typeof(IOperationResult), 500)]
-        public async Task<IActionResult> GetModulos()
+        public async Task<IActionResult> GetOpcionesByModulo(int idModulo)
         {
-            var result = await _userService.GetModulos(this.ToRequest(this));
+            var result = await _userService.GetOpcionesByModulo(this.ToRequest(this), idModulo);
 
             if (result.Success)
             {
@@ -41,13 +42,13 @@ namespace ConcentratorFraud.Felaban.Auth.API.Controllers
 
         [HttpPost, Route("crear")]
         [TokenAuthorize]
-        [ProducesResponseType(typeof(IOperationResult<ModuloDto>), 201)]
+        [ProducesResponseType(typeof(IOperationResult<OpcionDto>), 201)]
         [ProducesResponseType(typeof(IOperationResult), 500)]
-        public async Task<IActionResult> PostModulo([FromBody] ModuloRequest request)
+        public async Task<IActionResult> PostOpcion([FromBody] OpcionRequest request)
         {
             try
             {
-                var result = await _userService.PostModulo(request.ToRequest(this));
+                var result = await _userService.PostOpcion(request.ToRequest(this));
 
                 if (result.Success)
                 {
@@ -66,13 +67,13 @@ namespace ConcentratorFraud.Felaban.Auth.API.Controllers
 
         [HttpPut, Route("modificar/{id}")]
         [TokenAuthorize]
-        [ProducesResponseType(typeof(IOperationResult<ModuloDto>), 201)]
+        [ProducesResponseType(typeof(IOperationResult<OpcionDto>), 201)]
         [ProducesResponseType(typeof(IOperationResult), 500)]
-        public async Task<IActionResult> PutModulo([FromBody] ModuloRequest request, int id)
+        public async Task<IActionResult> PutModulo([FromBody] OpcionRequest request, int id)
         {
             try
             {
-                var result = await _userService.PutModulo(request.ToRequest(this), id);
+                var result = await _userService.PutOpcion(request.ToRequest(this), id);
 
                 if (result.Success)
                 {
@@ -95,7 +96,7 @@ namespace ConcentratorFraud.Felaban.Auth.API.Controllers
         [ProducesResponseType(typeof(IOperationResult), 500)]
         public async Task<IActionResult> DeleteModulo(int id)
         {
-            var result = await _userService.DeleteModulo(this, id);
+            var result = await _userService.DeleteOpcion(this, id);
 
             if (result.Success)
             {

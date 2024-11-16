@@ -81,7 +81,7 @@ namespace ConcentratorFraud.Felaban.Auth.BusinessLogic.Services
                 modulo = _mapper.Map(request.Data, modulo);
 
                 await Task.WhenAll(
-                    _modulo.InsertAsync(modulo),
+                    _modulo.UpdateAsync(modulo),
                     _modulo.SaveAsync(request)
                     );
 

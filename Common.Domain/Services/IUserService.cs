@@ -55,6 +55,9 @@ namespace Common.Domain.Services
         Task<IOperationResult<EmpresaDto>> GetEmpresaByToken(string token);
         Task<IOperationResult<List<EmpresaDto>>> CompaniesByUser(IOperationRequest request);
         #endregion
+
+        Task<IOperationResult<UsuarioDto>> PutUser(IOperationRequest<UsuarioRequest> request, string id);
+        Task<IOperationResult> DeleteUsuario(IOperationRequest request, string id);
     }
 
 }

@@ -4,6 +4,7 @@ using Common;
 using Common.Domain.Models;
 using Common.Domain.Services;
 using Common.Storage.Handlers;
+using ConcentratorFraud.Felaban.Auth.Domain.Request;
 using DataAccess.Models;
 using DataAccess.Repositories;
 using DataAccess.Repositories.Configurations;
@@ -41,6 +42,7 @@ namespace BusinessLogic.Services
         private readonly IMapper _mapper;
         private readonly IEntityRepository<UsuarioUnidad> _usuarioUnidad;
         private readonly IEntityRepository<UserMailVerify> _userMailVerify;
+        private readonly IEntityRepository<Usuario> _user;
 
         private string SecretKey => _appSettings["SecretKey"];
 
@@ -54,7 +56,8 @@ namespace BusinessLogic.Services
                 FileHandler fileHandler,
                 ITools tools,
                 IEntityRepository<UsuarioUnidad> usuarioUnidad,
-                IEntityRepository<UserMailVerify> userMailVerify)
+                IEntityRepository<UserMailVerify> userMailVerify,
+                IEntityRepository<Usuario> user)
         {
             _mapper = mapper;
             _appSettings = appSettings;
@@ -66,6 +69,7 @@ namespace BusinessLogic.Services
             _tools = tools;
             _usuarioUnidad = usuarioUnidad;
             _userMailVerify = userMailVerify;
+            _user = user;
         }
 
         public async Task<IOperationResult<AuthenticationResponse>> Authenticate(LoginRequest request)
@@ -780,6 +784,45 @@ namespace BusinessLogic.Services
         }
 
         #endregion
+
+
+        public async Task<IOperationResult<UsuarioDto>> PutUser(IOperationRequest<UsuarioRequest> request, string id)
+        {
+            try
+            {
+                var user = _user.Search(x => x.IdUsuario == id).FirstOrDefault();
+                user = _mapper.Map(request.Data, user);
+
+                await Task.WhenAll(
+                    _user.UpdateAsync(user),
+                    _user.SaveAsync(request)
+                    );
+
+                var result = _mapper.Map<UsuarioDto>(user);
+
+                return await result.ToResultAsync();
+            }
+            catch (Exception ex)
+            {
+                return await ex.ToResultAsync<UsuarioDto>();
+            }
+        }
+
+        public async Task<IOperationResult> DeleteUsuario(IOperationRequest request, string id)
+        {
+            var user = _user.FirstOrDefault(x => x.IdEstado && x.IdUsuario == id);
+
+            if (user != null)
+            {
+                user.IdEstado = false;
+                await _user.UpdateAsync(user);
+                await _user.SaveAsync(request);
+
+                return new OperationResult(HttpStatusCode.OK);
+            }
+
+            return new OperationResult(HttpStatusCode.NotFound, "No se encontró el Usuario!");
+        }
 
     }
 }
