@@ -187,5 +187,14 @@ namespace ConcentratorFraud.Felaban.Auth.BusinessLogic.Services
             return new OperationResult(HttpStatusCode.NotFound, "No se encontró el Perfil!");
         }
 
+        public async Task<IOperationResult<List<TipoPerfilDto>>> GetTipoPerfil(IOperationRequest model)
+        {
+            var roles = _db.TipoPerfil.Where(x => x.IdEstado == 1)
+                                  .Select(x => _mapper.Map<TipoPerfilDto>(x))
+                                  .ToList();
+
+            return await roles.ToResultAsync();
+        }
+
     }
 }

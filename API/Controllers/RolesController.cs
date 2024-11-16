@@ -39,6 +39,22 @@ namespace API.Controllers
             return NotFound(result);
         }
 
+        [HttpGet("perfil-tipo")]
+        [TokenAuthorize()]
+        [ProducesResponseType(typeof(IOperationResult<TipoPerfilDto>), 200)]
+        [ProducesResponseType(typeof(IOperationResult), 500)]
+        public async Task<IActionResult> GetTipoPerfil()
+        {
+            var result = await _userService.GetTipoPerfil(this.ToRequest(this));
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return NotFound(result);
+        }
+
         [HttpPost, Route("crear")]
         [TokenAuthorize]
         [ProducesResponseType(typeof(IOperationResult<PerfilDto>), 201)]

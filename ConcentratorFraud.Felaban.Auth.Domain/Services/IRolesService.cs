@@ -19,5 +19,6 @@ namespace ConcentratorFraud.Felaban.Auth.Domain.Services
         Task<IOperationResult<PerfilDto>> PostPerfil(IOperationRequest<PerfilRequest> request);
         Task<IOperationResult<PerfilDto>> PutPerfil(IOperationRequest<PerfilRequest> request, Guid id);
         Task<IOperationResult> DeletePerfil(IOperationRequest request, Guid id);
+        Task<IOperationResult<List<TipoPerfilDto>>> GetTipoPerfil(IOperationRequest model);
     }
 }
