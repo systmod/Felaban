@@ -9,6 +9,7 @@ namespace Common.Domain.Models
         public Guid IdPerfil { get; set; }
         public string Codigo { get; set; }
         public string Descripcion { get; set; }
+        public int IdTipoPerfil { get; set; }
         public TipoPerfilDto TipoPerfil { get; set; }
         //public int IdProducto { get; set; }
         //public int IdAplicacion { get; set; }
