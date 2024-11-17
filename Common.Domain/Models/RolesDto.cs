@@ -15,5 +15,6 @@ namespace Common.Domain.Models
         public string Descripcion { get; set; }
         public bool AccesoTotal { get; set; }
         public bool EsAdicional { get; set; }
+        public TipoPerfilDto TipoPerfil { get; set; }
     }
 }

@@ -43,7 +43,8 @@ namespace BusinessLogic.Mapping
             CreateMap<AgregarUsuarioResult, UsuarioDto>().ReverseMap();
             CreateMap<Perfil, RolesDto>()
                 .ForMember(member => member.EsAdicional, opts => opts.MapFrom(x => x.IdTipoPerfilNavigation.EsAdicional)) 
-                .ForMember(member => member.AccesoTotal, opts => opts.MapFrom(x => x.IdTipoPerfilNavigation.AccesoTotal))  
+                .ForMember(member => member.AccesoTotal, opts => opts.MapFrom(x => x.IdTipoPerfilNavigation.AccesoTotal))
+                .ForMember(member => member.TipoPerfil, opts => opts.MapFrom(x => x.IdTipoPerfilNavigation))
                 .ReverseMap();
 
             CreateMap<Opcion, OptionDto>().ReverseMap();
