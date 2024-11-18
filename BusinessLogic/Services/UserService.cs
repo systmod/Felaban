@@ -357,11 +357,10 @@ namespace BusinessLogic.Services
                 clave = request.Data.Clave;
 
             int idEmpresa = 1;
-            //Hay que resolver
-            //if (request.Data.IdEmpresa > 0)
-            //    idEmpresa = (int)request.Data.IdEmpresa;
-            //else
-            //    idEmpresa = request.Empresa.IdEmpresa;
+            if (request.Data.IdEmpresa > 0)
+                idEmpresa = (int)request.Data.IdEmpresa;
+            else
+                idEmpresa = request.Empresa.IdEmpresa;
 
             var res = await _procedures.AgregarUsuarioAsync(request.Data.Identificacion, request.Data.InicioSesion, request.Data.Nombres,
                                         request.Data.Correo, request.Data.Celular, clave, 
