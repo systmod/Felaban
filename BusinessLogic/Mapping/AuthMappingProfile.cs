@@ -33,6 +33,9 @@ namespace BusinessLogic.Mapping
             CreateMap<Producto, ProductoDto>().ReverseMap();
             CreateMap<Producto, ProductoRequest>().ReverseMap();
 
+            CreateMap<Usuario, UsuarioDto>().ReverseMap();
+            CreateMap<Usuario, UsuarioRequest>().ReverseMap();
+
             CreateMap<Aplicacion, AplicacionDto>()
                 .ForMember(member => member.Producto, opts => opts.MapFrom(x => x.IdProductoNavigation))
                 .ReverseMap();

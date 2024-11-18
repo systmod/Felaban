@@ -610,8 +610,8 @@ namespace BusinessLogic.Services
                 var result = _mapper.Map<List<UsuarioDto>>(users);
                 result.ForEach(x =>
                 {
-                    x.Roles = roles.Where(x => x.IdUsuario == x.IdUsuario)
-                                   .Select(x => x.IdPerfilNavigation.Descripcion)
+                    x.Roles = roles.Where(y => y.IdUsuario == x.IdUsuario)
+                                   .Select(z => z.IdPerfilNavigation.Descripcion)
                                    .Distinct()
                                    .ToList();
                 });
