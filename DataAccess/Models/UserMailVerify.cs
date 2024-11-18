@@ -9,9 +9,17 @@ public partial class UserMailVerify
 {
     public long Id { get; set; }
 
-    public string Correo { get; set; }
+    public string IdUsuario { get; set; }
 
     public int IdAplicacion { get; set; }
+
+    public string Correo { get; set; }
+
+    public string Codigo { get; set; }
+
+    public DateTime FechaCreacion { get; set; }
+
+    public DateTime? FechaVerificacion { get; set; }
 
     public bool Verificado { get; set; }
 }

@@ -707,22 +707,26 @@ namespace BusinessLogic.Services
         }
 
 
-        public IOperationResult CheckMail(string correo, int idAplicacion)
+        public IOperationResult CheckMail(IOperationRequest model, string codigo)
         {
-            var exist = _userMailVerify.FirstOrDefault(x => x.Correo == correo && x.IdAplicacion== idAplicacion);
+            var exist = _userMailVerify.SearchAll(x => x.Codigo == codigo && x.IdUsuario== model.Usuario.IdUsuario && !x.Verificado ).FirstOrDefault();
 
             if (exist == null)
             {
-                return new OperationResult(HttpStatusCode.NotFound, "Correo no encontrado", "No existe ese correo señor");
+                return new OperationResult(HttpStatusCode.NotFound, "Código no encontrado", "No existe código");
             }
 
             if (exist.Verificado)
             {
-                return new OperationResult(HttpStatusCode.OK, "Correo verificado", "Todo de maravilla :)");
+                return new OperationResult(HttpStatusCode.Forbidden, "Código ya verificado", "Código ya verificado");
             }
             else
             {
-                return new OperationResult(HttpStatusCode.Forbidden, "Correo pendiente de verificación", "El correo esta pendiente cabron");
+                //exist.Verificado = true;
+                //_userMailVerify.UpdateAsync(exist);
+                //_userMailVerify.SaveAsync(model);
+
+                return new OperationResult(HttpStatusCode.OK, "Código OK", "Código OK");
             }
 
         }
@@ -733,29 +737,25 @@ namespace BusinessLogic.Services
             return await empresa.PlantillaCorreoVerificacion.ToResultAsync();
         }
 
-        public async Task<IOperationResult<UserMailVerifyDto>> SaveToVerify(IOperationRequest<UserToVerifyRequest> request)
+        public async Task<IOperationResult<UserMailVerifyDto>> SaveToVerify(IOperationRequest request)
         {
             try
             {
-                var mailExists = _userMailVerify.FirstOrDefault(x => x.Correo == request.Data.Correo && x.IdAplicacion == request.Data.IdAplicacion);
 
-                if (mailExists != null && mailExists.Verificado)
-                {
-                    return new OperationResult<UserMailVerifyDto>(HttpStatusCode.Forbidden, "El correo ya fue verificado anteriormente");
-                }
+                Random random = new Random();
+                int randomNumber = random.Next(10000, 100000);
 
                 var newMail = new UserMailVerify
                 {
-                    Correo = request.Data.Correo,
-                    IdAplicacion = request.Data.IdAplicacion,
+                    IdUsuario = request.Usuario.IdUsuario,
+                    IdAplicacion = request.Aplicacion.IdAplicacion,
+                    Correo = request.Usuario.Correo,
+                    Codigo = randomNumber.ToString(),
                     Verificado = false
                 };
 
-                if(mailExists == null)
-                {
-                    await _userMailVerify.InsertAsync(newMail);
-                    await _userMailVerify.SaveAsync(request);
-                }
+                await _userMailVerify.InsertAsync(newMail);
+                await _userMailVerify.SaveAsync(request);
 
                 var result = _mapper.Map<UserMailVerifyDto>(newMail);
 

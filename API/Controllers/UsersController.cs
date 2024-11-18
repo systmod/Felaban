@@ -3,9 +3,11 @@ using Common.Domain.Models;
 using Common.Domain.Services;
 using Common.Http;
 using ConcentratorFraud.Felaban.Auth.Domain.Request;
+using DinkToPdf;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -87,13 +89,13 @@ namespace API.Controllers
             return result.ToObjectResult();
         }
 
-        [HttpGet, Route("verify/{correo}/{idAplicacion}")]
+        [HttpGet, Route("verify/{codigo}")]
         [ProducesResponseType(typeof(IOperationResult), 200)]
         [ProducesResponseType(typeof(IOperationResult), 400)]
-        public IActionResult CheckMail(string correo, int idAplicacion)
+        public IActionResult CheckMail(string codigo)
         {
 
-            var result = _userService.CheckMail(correo, idAplicacion);
+            var result = _userService.CheckMail(this,codigo);
 
             if (result.Success)
             {
@@ -105,19 +107,21 @@ namespace API.Controllers
 
 
         [HttpPost("verify")]
+        [TokenAuthorize]
         [ProducesResponseType(typeof(IOperationResult<UserMailVerifyDto>), 201)]
         [ProducesResponseType(typeof(IOperationResult), 404)]
         [ProducesResponseType(typeof(IOperationResult), 500)]
-        public async Task<IActionResult> RegisterToVerify([FromBody] UserToVerifyRequest request)
+        public async Task<IActionResult> RegisterToVerify()
         {
             try
             {
-                var result = await _userService.SaveToVerify(request.ToRequest(this));
+
+                var result = await _userService.SaveToVerify(this);
                 if (result.Success)
                 {
-                    var app = await _userService.GetPlantillaByAplicacion(request.IdAplicacion);
+                    var app = await _userService.GetPlantillaByAplicacion(1);
 
-                    await Tools.SendMailAsync(result.Result, result.Result.Correo, "Bienvenido!", app.Result );
+                    await Tools.SendMailAsync(result.Result, result.Result.Correo, $"Codigo: {result.Result.Codigo}" , app.Result );
                     return Ok(result);
                 }
                 else

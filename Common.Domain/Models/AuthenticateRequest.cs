@@ -176,9 +176,11 @@ namespace Common.Domain.Models
     }
 
     public class UserToVerifyRequest
-    {        
-        public string Correo { get; set; }
+    {
+        public string IdUsuario { get; set; }
         public int IdAplicacion { get; set; }
+        public string Correo { get; set; }
+        public string Codigo { get; set; }
     }
 
 }

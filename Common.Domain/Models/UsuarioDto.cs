@@ -69,6 +69,7 @@ namespace Common.Domain.Models
         public long Id { get; set; }
         public string Correo { get; set; }
         public int IdAplicacion { get; set; }
+        public string Codigo { get; set; }
         public bool Verificado { get; set; }
     }
 }

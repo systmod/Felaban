@@ -44,9 +44,9 @@ namespace Common.Domain.Services
         Task<IOperationResultList<UsuarioDto>> GetAllUsers(IOperationRequest<FindUsersRequest> model, int page = 1, int? pageSize = 10);
         IOperationResult ValidateUsername(string username);
 
-        IOperationResult CheckMail(string correo, int idAplicacion);
+        IOperationResult CheckMail(IOperationRequest model, string codigo);
         Task<IOperationResult<string>> GetPlantillaByAplicacion(int idAplicacion);
-        Task<IOperationResult<UserMailVerifyDto>> SaveToVerify(IOperationRequest<UserToVerifyRequest> request);
+        Task<IOperationResult<UserMailVerifyDto>> SaveToVerify(IOperationRequest request);
         Task<string> VerifyUserMail(long Id);
         Task<IOperationResult> PostLogAudit(IOperationRequest<AuditLogsRequest> request);
         

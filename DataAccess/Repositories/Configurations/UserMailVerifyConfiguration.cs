@@ -12,9 +12,21 @@ namespace DataAccess.Repositories.Configurations
     {
         public void Configure(EntityTypeBuilder<UserMailVerify> entity)
         {
+            entity.Property(e => e.Codigo)
+            .IsRequired()
+            .HasMaxLength(50)
+            .IsUnicode(false);
             entity.Property(e => e.Correo)
             .IsRequired()
             .HasMaxLength(200)
+            .IsUnicode(false);
+            entity.Property(e => e.FechaCreacion)
+            .HasDefaultValueSql("(getdate())")
+            .HasColumnType("datetime");
+            entity.Property(e => e.FechaVerificacion).HasColumnType("datetime");
+            entity.Property(e => e.IdUsuario)
+            .IsRequired()
+            .HasMaxLength(50)
             .IsUnicode(false);
 
             OnConfigurePartial(entity);
