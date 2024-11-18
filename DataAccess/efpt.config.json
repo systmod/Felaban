@@ -92,19 +92,7 @@
          "ObjectType": 1
       },
       {
-         "Name": "[dbo].[AgregarEmpresa]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[AgregarUnidadAdmin]",
-         "ObjectType": 1
-      },
-      {
          "Name": "[dbo].[AgregarUsuario]",
-         "ObjectType": 1
-      },
-      {
-         "Name": "[dbo].[Custom_AdminUnitsByCompany]",
          "ObjectType": 1
       },
       {
@@ -140,7 +128,7 @@
          "ObjectType": 1
       }
    ],
-   "UiHint": "binasystem.AUTH.dbo",
+   "UiHint": "win-oucgipmimme\\sqlexpress.Auth.dbo",
    "UncountableWords": null,
    "UseBoolPropertiesWithoutDefaultSql": true,
    "UseDatabaseNames": false,

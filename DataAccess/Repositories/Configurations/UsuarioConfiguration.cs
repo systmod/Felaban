@@ -21,6 +21,9 @@ namespace DataAccess.Repositories.Configurations
             entity.Property(e => e.IdUsuario)
             .HasMaxLength(50)
             .IsUnicode(false);
+            entity.Property(e => e.Apellido)
+            .HasMaxLength(500)
+            .IsUnicode(false);
             entity.Property(e => e.Correo)
             .IsRequired()
             .HasMaxLength(500)

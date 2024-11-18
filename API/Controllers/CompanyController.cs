@@ -57,23 +57,23 @@ namespace API.Controllers
             return NotFound(result);
         }
 
-        [HttpPost("save")]
-        [TokenAuthorize()]
-        [ProducesResponseType(typeof(IOperationResult), 201)]
-        [ProducesResponseType(typeof(IOperationResult), 404)]
-        [ProducesResponseType(typeof(IOperationResult), 500)]
-        public async Task<IActionResult> SaveCompany([FromBody] EmpresaRequest request)
-        {
-            try
-            {
-                await _userService.SaveCompany(request.ToRequest(this));
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return await Task.FromResult(ex.ToObjectResult());
-            }
-        }
+        //[HttpPost("save")]
+        //[TokenAuthorize()]
+        //[ProducesResponseType(typeof(IOperationResult), 201)]
+        //[ProducesResponseType(typeof(IOperationResult), 404)]
+        //[ProducesResponseType(typeof(IOperationResult), 500)]
+        //public async Task<IActionResult> SaveCompany([FromBody] EmpresaRequest request)
+        //{
+        //    try
+        //    {
+        //        await _userService.SaveCompany(request.ToRequest(this));
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return await Task.FromResult(ex.ToObjectResult());
+        //    }
+        //}
 
     }
 }

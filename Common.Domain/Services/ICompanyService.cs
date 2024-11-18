@@ -9,7 +9,7 @@ namespace Common.Domain.Services
 {
     public interface ICompanyService
     {
-        Task<IOperationResult> SaveCompany(IOperationRequest<EmpresaRequest> model);
+        //Task<IOperationResult> SaveCompany(IOperationRequest<EmpresaRequest> model);
         Task<IOperationResult<EmpresaDto>> UpdateEmpresa(IOperationRequest<EmpresaRequest> request);
         Task<IOperationResult<EmpresaDto>> GetEmpresaById(int id);
     }

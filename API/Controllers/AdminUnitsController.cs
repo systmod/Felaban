@@ -30,21 +30,21 @@ namespace API.Controllers
         }
 
 
-        [TokenAuthorize(TokenPermissionEnum.Authorized)]
-        [HttpGet("company/{id}")]
-        [ProducesResponseType(typeof(AuthenticationResponse), 200)]
-        [ProducesResponseType(typeof(IOperationResult), 500)]
-        public async Task<IActionResult> GetAdminUnitsByUserAndCompany(int id = default)
-        {
-            var result = await _userService.GetAdminUnitsByUserAndCompany(id.ToRequest(this));
+        //[TokenAuthorize(TokenPermissionEnum.Authorized)]
+        //[HttpGet("company/{id}")]
+        //[ProducesResponseType(typeof(AuthenticationResponse), 200)]
+        //[ProducesResponseType(typeof(IOperationResult), 500)]
+        //public async Task<IActionResult> GetAdminUnitsByUserAndCompany(int id = default)
+        //{
+        //    var result = await _userService.GetAdminUnitsByUserAndCompany(id.ToRequest(this));
 
-            if (result.Success)
-            {
-                return Ok(result);
-            }
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
 
-            return NotFound(result);
-        }
+        //    return NotFound(result);
+        //}
 
         /// <summary>
         /// Get de todos los locales de todas las empresas por l

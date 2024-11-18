@@ -6,7 +6,7 @@ namespace Common.Domain.Services
 {
     public interface IUserService
     {
-        Task<IOperationResult<List<UnidadAdminDto>>> GetAdminUnitsByUserAndCompany(IOperationRequest<int> model);
+        //Task<IOperationResult<List<UnidadAdminDto>>> GetAdminUnitsByUserAndCompany(IOperationRequest<int> model);
         
         Task<IOperationResult<AuthenticationResponse>> Authenticate(LoginRequest model);
 

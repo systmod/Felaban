@@ -42,22 +42,22 @@ namespace BusinessLogic.Services
             _fileHandler = fileHandler;
         }
 
-        public async Task<IOperationResult> SaveCompany(IOperationRequest<EmpresaRequest> model)
-        {
-            try
-            {
-                var dat = model.Data;
+        //public async Task<IOperationResult> SaveCompany(IOperationRequest<EmpresaRequest> model)
+        //{
+        //    try
+        //    {
+        //        var dat = model.Data;
 
-                await _procedures.AgregarEmpresaAsync(dat.IdEmpresaD, dat.IdEmpresaH, dat.Ruc, dat.RazonSocial, dat.NombreComercial, dat.CodigoSbs, dat.Pais, dat.Moneda, "URLLOGO",
-                                                     dat.Siglas, dat.Celular, dat.UTC, dat.Direccion, dat.Email);
+        //        await _procedures.AgregarEmpresaAsync(dat.IdEmpresaD, dat.IdEmpresaH, dat.Ruc, dat.RazonSocial, dat.NombreComercial, dat.CodigoSbs, dat.Pais, dat.Moneda, "URLLOGO",
+        //                                             dat.Siglas, dat.Celular, dat.UTC, dat.Direccion, dat.Email);
 
-                return new OperationResult(HttpStatusCode.OK);
-            }
-            catch (Exception ex)
-            {
-                return await ex.ToResultAsync();
-            }
-        }
+        //        return new OperationResult(HttpStatusCode.OK);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return await ex.ToResultAsync();
+        //    }
+        //}
 
         public async Task<IOperationResult<EmpresaDto>> UpdateEmpresa(IOperationRequest<EmpresaRequest> request)
         {

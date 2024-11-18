@@ -79,8 +79,8 @@ namespace BusinessLogic.Mapping
                 .ForMember(member => member.Opcion, opts => opts.MapFrom(x => x.IdOpcionNavigation.Nombre))
                 .ReverseMap();
 
-            CreateMap<Custom_AdminUnitsByCompanyResult, UnidadAdminDto>()
-                .ReverseMap();
+            //CreateMap<Custom_AdminUnitsByCompanyResult, UnidadAdminDto>()
+            //    .ReverseMap();
 
             CreateMap<UserMailVerify, UserMailVerifyDto>().ReverseMap();
         }

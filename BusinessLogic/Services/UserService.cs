@@ -209,17 +209,17 @@ namespace BusinessLogic.Services
             }
         }
 
-        public async Task<IOperationResult<List<UnidadAdminDto>>> GetAdminUnitsByUserAndCompany(IOperationRequest<int> model)
-        {
+        //public async Task<IOperationResult<List<UnidadAdminDto>>> GetAdminUnitsByUserAndCompany(IOperationRequest<int> model)
+        //{
            
-            var res = await _procedures.Custom_AdminUnitsByCompanyAsync(model.Usuario.IdUsuario, model.Data);
-            var data = res.AsQueryable();
+        //    var res = await _procedures.Custom_AdminUnitsByCompanyAsync(model.Usuario.IdUsuario, model.Data);
+        //    var data = res.AsQueryable();
 
-            var result = _mapper.Map<List<UnidadAdminDto>>(data);
+        //    var result = _mapper.Map<List<UnidadAdminDto>>(data);
 
 
-            return await result.ToResultAsync();
-        }
+        //    return await result.ToResultAsync();
+        //}
 
         public async Task<IOperationResult<List<UnidadAdminDto>>> GetAdminUnitsByUser(IOperationRequest<string> model)
         {
@@ -797,6 +797,15 @@ namespace BusinessLogic.Services
                     _user.UpdateAsync(user),
                     _user.SaveAsync(request)
                     );
+
+                //Cambio el perfil
+                var userUnidad = _usuarioUnidad.Search(x => x.IdUsuario == id && x.IdEmpresa== request.Empresa.IdEmpresa && x.Activo).FirstOrDefault();
+                userUnidad.IdPerfil = request.Data.IdPerfil;
+                await Task.WhenAll(
+                    _usuarioUnidad.UpdateAsync(userUnidad),
+                    _usuarioUnidad.SaveAsync(request)
+                    );
+
 
                 var result = _mapper.Map<UsuarioDto>(user);
 
