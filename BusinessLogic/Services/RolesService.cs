@@ -49,6 +49,8 @@ namespace ConcentratorFraud.Felaban.Auth.BusinessLogic.Services
         public async Task<IOperationResult<List<RolesDto>>> GetRoles(IOperationRequest model)
         {
             var roles = _db.Perfil.Include(x => x.IdTipoPerfilNavigation)
+                                  .Include(x => x.DetallePerfil)
+                                  .ThenInclude(x => x.IdOpcionNavigation)
                                   .Where(x => x.IdProducto == model.Aplicacion.Producto.IdProducto)
                                   .Select(x => _mapper.Map<RolesDto>(x))
                                   .ToList();

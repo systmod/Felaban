@@ -16,5 +16,6 @@ namespace Common.Domain.Models
         public bool AccesoTotal { get; set; }
         public bool EsAdicional { get; set; }
         public TipoPerfilDto TipoPerfil { get; set; }
+        public List<ProfileDetailDto> DetallePerfil { get; set; }
     }
 }
