@@ -9,6 +9,7 @@ namespace Common.Domain.Models
 {
     public class ProfileDetailRequest
     {
+        public int IdModulo { get; set; }
         public long IdOpcion { get; set; }
         public string Permisos { get; set; }
     }

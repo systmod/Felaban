@@ -49,9 +49,9 @@ namespace ConcentratorFraud.Felaban.Auth.BusinessLogic.Services
         public async Task<IOperationResult<List<RolesDto>>> GetRoles(IOperationRequest model)
         {
             var roles = _db.Perfil.Include(x => x.IdTipoPerfilNavigation)
-                                  .Include(x => x.DetallePerfil)
+                                  .Include(x => x.DetallePerfil.Where(y => y.IdEstado==1))
                                   .ThenInclude(x => x.IdOpcionNavigation)
-                                  .Where(x => x.IdProducto == model.Aplicacion.Producto.IdProducto)
+                                  .Where(x => x.IdProducto == model.Aplicacion.Producto.IdProducto && x.IdEstado==1)
                                   .Select(x => _mapper.Map<RolesDto>(x))
                                   .ToList();
 
@@ -73,7 +73,7 @@ namespace ConcentratorFraud.Felaban.Auth.BusinessLogic.Services
             try
             {
                 Guid.TryParse(idPerfil, out var id);
-                var detalles = _db.DetallePerfil.Search(x => x.IdEstado && x.IdPerfil == id).Include(X => X.IdOpcionNavigation);
+                var detalles = _db.DetallePerfil.Search(x => x.IdEstado ==1 && x.IdPerfil == id).Include(X => X.IdOpcionNavigation);
 
                 return await _mapper.Map<List<ProfileDetailDto>>(detalles)
                                     .ToResultAsync();
@@ -119,12 +119,13 @@ namespace ConcentratorFraud.Felaban.Auth.BusinessLogic.Services
 
         public async Task<IOperationResult> DeleteDetail(long id, IOperationRequest request)
         {
-            var detail = _db.DetallePerfil.FirstOrDefault(x => x.IdEstado && x.IdDetallePerfil == id);
+            var detail = _detallePerfil.FirstOrDefault(x => x.IdEstado ==1 && x.IdDetallePerfil == id);
 
             if (detail != null)
             {
-                await _detallePerfil.DeleteAsync(detail);
-                await _db.SaveAsync(request);
+                detail.IdEstado = 0;
+                await _detallePerfil.UpdateAsync(detail);
+                await _detallePerfil.SaveAsync(request);
 
                 return new OperationResult(HttpStatusCode.OK);
             }

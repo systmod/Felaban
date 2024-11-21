@@ -100,7 +100,7 @@ namespace API
 
             app.UseSwaggerUI(options =>
             {
-                var swaggerEndpoint = $"{RoutePrefix}/swagger/v1/swagger.json";
+                var swaggerEndpoint = $"swagger/v1/swagger.json";
                 options.SwaggerEndpoint(swaggerEndpoint, $"Auth API {Environment?.EnvironmentName} v{Version}");
                 options.RoutePrefix = string.Empty;
 

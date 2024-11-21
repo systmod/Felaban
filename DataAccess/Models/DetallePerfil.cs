@@ -29,7 +29,7 @@ public partial class DetallePerfil
 
     public DateTime? FechaModificacion { get; set; }
 
-    public bool IdEstado { get; set; }
+    public short IdEstado { get; set; }
 
     public virtual Modulo IdModuloNavigation { get; set; }
 

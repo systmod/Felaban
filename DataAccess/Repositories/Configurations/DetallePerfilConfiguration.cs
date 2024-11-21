@@ -16,6 +16,7 @@ namespace DataAccess.Repositories.Configurations
 
             entity.Property(e => e.FechaIngreso).HasColumnType("datetime");
             entity.Property(e => e.FechaModificacion).HasColumnType("datetime");
+            entity.Property(e => e.IdEstado).HasDefaultValueSql("((1))");
             entity.Property(e => e.IpIngreso)
             .IsRequired()
             .HasMaxLength(15)

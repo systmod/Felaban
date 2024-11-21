@@ -74,12 +74,12 @@ namespace BusinessLogic.Services
 
             if (!string.IsNullOrEmpty(idPerfil))
             {
-                var detalles = _db.DetallePerfil.Search(x => x.IdEstado && x.IdPerfil.ToString() == idPerfil).ToList();
+                var detalles = _db.DetallePerfil.Search(x => x.IdEstado == 1 && x.IdPerfil.ToString() == idPerfil).ToList();
                 var listOpt = options.ConvertAll(item => item);
 
                 foreach (var item in options)
                 {
-                    var found = detalles.FirstOrDefault(x => x.IdEstado && x.IdOpcion == item.IdOpcion);
+                    var found = detalles.FirstOrDefault(x => x.IdEstado == 1 && x.IdOpcion == item.IdOpcion);
                     if (found != null) listOpt.Remove(item);
                 }
                 options = listOpt;
