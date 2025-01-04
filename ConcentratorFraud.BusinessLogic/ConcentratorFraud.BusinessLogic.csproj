@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Operations\Common.Operations.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\ConcentratorFraud.DataAccess\ConcentratorFraud.DataAccess.csproj" />
+    <ProjectReference Include="..\ConcentratorFraud.Domain\ConcentratorFraud.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
